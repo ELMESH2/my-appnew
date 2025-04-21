@@ -1,170 +1,254 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const HomeScreen = () => {
   return (
-    <ScrollView style={styles.container}>
-      {/* Banner principal */}
-      <View style={styles.banner}>
-        <Text style={styles.bannerText}>BigFood Delivery</Text>
-      </View>
-
-      {/* Categorias */}
-      <View style={styles.categoriesContainer}>
-        <Text style={styles.sectionTitle}>Categorias</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['Restaurantes', 'Bebidas', 'Sobremesas', 'Pizza'].map((category) => (
-            <View style={styles.category} key={category}>
-              {category === 'Sobremesas' ? (
-                <Image
-                  source={require('./assets/fotos/acai.jpg')} // Caminho da imagem para Sobremesas
-                  style={styles.categoryImage}
-                />
-              ) : category === 'Bebidas' ? (
-                <Image
-                  source={require('./assets/fotos/refrigerante.jpg')} // Caminho da imagem para Bebidas
-                  style={styles.categoryImage}
-                />
-              ) : category === 'Pizza' ? (
-                <Image
-                  source={require('./assets/fotos/pizza.jpg')} // Caminho da imagem para Bebidas
-                  style={styles.categoryImage}
-                />
-              ) : category === 'Restaurantes' ? (
-                <Image
-                  source={require('./assets/fotos/restaurante.jpg')} // Caminho da imagem para Restaurantes
-                  style={styles.categoryImage}
-                />
-              ) : (
-                <View style={styles.categoryImagePlaceholder}></View>
-              )}
-              <Text style={styles.categoryText}>{category}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-
-      {/* Banners de ofertas */}
-      <View style={styles.bannersContainer}>
-        <Text style={styles.sectionTitle}>Ofertas Especiais</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['Oferta 1', 'Oferta 2', 'Oferta 3'].map((offer, index) => (
-            <View style={styles.bannerItem} key={index}>
-              <View style={styles.bannerImagePlaceholder}></View>
-              <Text style={styles.bannerText}>{offer}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-
-      {/* Promoções do dia */}
-      <View style={styles.promotionsContainer}>
-        <Text style={styles.sectionTitle}>Promoções</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['Promoção 1', 'Promoção 2', 'Promoção 3', 'Promoção 4', 'Promoção 5', 'Promoção 6', 'Promoção 7', 'Promoção 8'].map((promo, index) => (
-            <View style={styles.promotionItem} key={index}>
-              <View style={styles.promotionImagePlaceholder}></View>
-              <Text style={styles.promotionText}>{promo}</Text>
-              <Text style={styles.priceText}>R$ 19,90</Text>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-
-      {/* Últimas Lojas (sem texto) */}
-      <View style={styles.lastStoresContainer}>
-        <Text style={styles.sectionTitle}>Últimas Lojas</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['Loja Fictícia 1', 'Loja Fictícia 2'].map((store, index) => (
-            <View style={styles.storeItem} key={index}>
-              <View style={styles.storeImagePlaceholder}></View>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-
-      {/* Culinária Brasileira */}
-      <View style={styles.culinaryContainer}>
-        <Text style={styles.sectionTitle}>Culinária Brasileira</Text>
-        
-        {/* Quadrado grande com imagem */}
-        <View style={styles.chefImageContainer}>
+    <View style={styles.container}>
+      <ScrollView style={styles.scrollContainer}>
+        {/* Banner principal com imagem */}
+        <View style={styles.banner}>
           <Image
-            source={require('./assets/fotos/comidabr.jpg')} // Caminho da imagem para Culinária Brasileira
-            style={styles.imagePlaceholder}
+            source={require('./assets/fotos/bigfood.jpg')}
+            style={styles.bannerImage}
           />
         </View>
 
-        {/* Restaurante */}
-        <View style={styles.restaurantInfo}>
-          <View style={styles.restaurantImage}>
-            <View style={styles.restaurantImagePlaceholder}></View>
+        {/* Categorias */}
+        <View style={styles.categoriesContainer}>
+          <Text style={styles.sectionTitle}>Categorias</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {['Restaurantes', 'Bebidas', 'Sobremesas', 'Pizza'].map((category) => (
+              <View style={styles.category} key={category}>
+                {category === 'Sobremesas' ? (
+                  <Image
+                    source={require('./assets/fotos/categorias/acai.jpg')}
+                    style={styles.categoryImage}
+                  />
+                ) : category === 'Bebidas' ? (
+                  <Image
+                    source={require('./assets/fotos/categorias/refrigerante.jpg')}
+                    style={styles.categoryImage}
+                  />
+                ) : category === 'Pizza' ? (
+                  <Image
+                    source={require('./assets/fotos/categorias/pizza.jpg')}
+                    style={styles.categoryImage}
+                  />
+                ) : category === 'Restaurantes' ? (
+                  <Image
+                    source={require('./assets/fotos/categorias/restaurante.jpg')}
+                    style={styles.categoryImage}
+                  />
+                ) : (
+                  <View style={styles.categoryImagePlaceholder}></View>
+                )}
+                <Text style={styles.categoryText}>{category}</Text>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Banners de ofertas */}
+        <View style={styles.bannersContainer}>
+          <Text style={styles.sectionTitle}>Ofertas Especiais</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {['Oferta 1', 'Oferta 2', 'Oferta 3'].map((offer, index) => (
+              <View style={styles.bannerItem} key={index}>
+                <View style={styles.bannerImagePlaceholder}>
+                  {offer === 'Oferta 1' ? (
+                    <Image
+                      source={require('./assets/fotos/ofertas/promo1.jpg')}
+                      style={styles.bannerImagePlaceholder}
+                    />
+                  ) : offer === 'Oferta 2' ? (
+                    <Image
+                      source={require('./assets/fotos/ofertas/promo2.jpg')}
+                      style={styles.bannerImagePlaceholder}
+                    />
+                  ) : offer === 'Oferta 3' ? (
+                    <Image
+                      source={require('./assets/fotos/ofertas/promo3.jpg')}
+                      style={styles.bannerImagePlaceholder}
+                    />
+                  ) : (
+                    <View style={styles.bannerImagePlaceholder}></View>
+                  )}
+                </View>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Promoções (com imagens) */}
+        <View style={styles.lastStoresContainer}>
+          <Text style={styles.sectionTitle}>Promoções</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {['Promoção 1', 'Promoção 2'].map((promotion, index) => (
+              <View style={styles.storeItem} key={index}>
+                <View style={styles.storeImagePlaceholder}>
+                  {index === 0 ? (
+                    <Image
+                      source={require('./assets/fotos/promo/bra.jpg')}
+                      style={styles.storeImagePlaceholder}
+                    />
+                  ) : (
+                    <Image
+                      source={require('./assets/fotos/promo/lanch.jpg')}
+                      style={styles.storeImagePlaceholder}
+                    />
+                  )}
+                </View>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Últimas Lojas (com imagem redonda e nome embaixo) */}
+        <View style={styles.famousRestaurantsContainer}>
+          <Text style={styles.sectionTitle}>Últimas Lojas</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {[
+              { name: 'Mask Pizza', img: require('./assets/fotos/restaurantes/pizza1.jpg') },
+              { name: 'Lancer Burguer', img: require('./assets/fotos/restaurantes/hambu.jpg') },
+              { name: 'Japane', img: require('./assets/fotos/restaurantes/japones.jpg') },
+              { name: 'Cantina Toscana', img: require('./assets/fotos/restaurantes/italia.jpg') },
+            ].map((store, index) => (
+              <View style={styles.category} key={index}>
+                <Image source={store.img} style={styles.categoryImage} />
+                <Text style={styles.categoryText}>{store.name}</Text>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Culinária Brasileira */}
+        <View style={styles.culinaryContainer}>
+          <Text style={styles.sectionTitle}>Culinária Brasileira</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={styles.chefImageContainer}>
+              <Image
+                source={require('./assets/fotos/culinaria br/comidabr.jpg')}
+                style={styles.imagePlaceholder}
+              />
+              <View style={styles.restaurantInfo}>
+                <View style={styles.restaurantImage}>
+                  <View style={styles.storeImagePlaceholder}></View>
+                </View>
+                <View style={styles.restaurantTextContainer}>
+                  <Text style={styles.restaurantName}>Restaurante 1</Text>
+                  <View style={styles.deliveryInfo}>
+                    <Text style={styles.deliveryTime}>50 min</Text>
+                    <Text style={styles.deliveryFree}>Grátis</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.chefImageContainer}>
+              <Image
+                source={require('./assets/fotos/culinaria br/comidabr2.jpg')}
+                style={styles.imagePlaceholder}
+              />
+              <View style={styles.restaurantInfo}>
+                <View style={styles.restaurantImage}>
+                  <View style={styles.storeImagePlaceholder}></View>
+                </View>
+                <View style={styles.restaurantTextContainer}>
+                  <Text style={styles.restaurantName}>Restaurante 2</Text>
+                  <View style={styles.deliveryInfo}>
+                    <Text style={styles.deliveryTime}>50 min</Text>
+                    <Text style={styles.deliveryFree}>Grátis</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+        </View>
+
+        {/* Famosos no BigFood */}
+        <View style={styles.famousRestaurantsContainer}>
+          <Text style={styles.sectionTitle}>Famosos no BigFood</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {['Mcdonald´s', 'Outback', 'Coco Bambu', 'Habbib´s', 'Spoleto'].map((restaurant, index) => (
+              <View style={styles.category} key={index}>
+                {restaurant === 'Mcdonald´s' ? (
+                  <Image source={require('./assets/fotos/famosos/mcdonald.jpg')} style={styles.categoryImage} />
+                ) : restaurant === 'Outback' ? (
+                  <Image source={require('./assets/fotos/famosos/outback.jpg')} style={styles.categoryImage} />
+                ) : restaurant === 'Coco Bambu' ? (
+                  <Image source={require('./assets/fotos/famosos/coco.jpg')} style={styles.categoryImage} />
+                ) : restaurant === 'Habbib´s' ? (
+                  <Image source={require('./assets/fotos/famosos/habib.jpg')} style={styles.categoryImage} />
+                ) : restaurant === 'Spoleto' ? (
+                  <Image source={require('./assets/fotos/famosos/spoleto.jpg')} style={styles.categoryImage} />
+                ) : (
+                  <View style={styles.categoryImagePlaceholder}></View>
+                )}
+                <Text style={styles.categoryText}>{restaurant}</Text>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Lojas (Verticais) */}
+        <View style={styles.famousRestaurantsVerticalContainer}>
+          <Text style={styles.sectionTitle}>Lojas</Text>
+          <View style={styles.verticalCategory}>
+            <Image source={require('./assets/fotos/restaurantes/japones.jpg')} style={styles.categoryImage} />
+            <View style={styles.storeDetails}>
+              <Text style={styles.categoryText}>Japane</Text>
+              <Text style={styles.storeRating}>⭐ 4.8 <Text style={styles.storeType}> Japonesa 2,6 km</Text></Text>
+              <Text style={styles.storeDelivery}>24-34 min Grátis</Text>
+            </View>
           </View>
-          <View style={styles.restaurantTextContainer}>
-            <Text style={styles.restaurantName}>Restaurante Fictício</Text>
-            <View style={styles.deliveryInfo}>
-              <Text style={styles.deliveryTime}>50 min</Text>
-              <Text style={styles.deliveryFree}>Grátis</Text>
+          <View style={styles.verticalCategory}>
+            <Image source={require('./assets/fotos/restaurantes/italia.jpg')} style={styles.categoryImage} />
+            <View style={styles.storeDetails}>
+              <Text style={styles.categoryText}>Cantina Toscana</Text>
+              <Text style={styles.storeRating}>⭐ 4.5 <Text style={styles.storeType}>Italiana 1,8 km</Text></Text>
+              <Text style={styles.storeDelivery}>30-44 min Grátis</Text>
+            </View>
+          </View>
+          <View style={styles.verticalCategory}>
+            <Image source={require('./assets/fotos/restaurantes/pizza1.jpg')} style={styles.categoryImage} />
+            <View style={styles.storeDetails}>
+              <Text style={styles.categoryText}>Mask Pizza</Text>
+              <Text style={styles.storeRating}>⭐ 4.9 <Text style={styles.storeType}>Pizzaria 2,1 km</Text></Text>
+              <Text style={styles.storeDelivery}>45-60 min Grátis</Text>
+            </View>
+          </View>
+          <View style={styles.verticalCategory}>
+            <Image source={require('./assets/fotos/restaurantes/hambu.jpg')} style={styles.categoryImage} />
+            <View style={styles.storeDetails}>
+              <Text style={styles.categoryText}>Lancer Burguer</Text>
+              <Text style={styles.storeRating}>⭐ 4.3 <Text style={styles.storeType}>Hamburgueria 1,4 km</Text></Text>
+              <Text style={styles.storeDelivery}>25-50 min Grátis</Text>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
 
-      {/* Famosos no BigFood (Novos Restaurantes) */}
-      <View style={styles.famousRestaurantsContainer}>
-        <Text style={styles.sectionTitle}>Famosos no BigFood</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['Mcdonald´s', 'Restaurante 2', 'Restaurante 3', 'Restaurante 4', 'Restaurante 5'].map((restaurant, index) => (
-            <View style={styles.category} key={index}>
-              {restaurant === 'Mcdonald´s' ? (
-                <Image
-                  source={require('./assets/fotos/mcdonald.jpg')} // Caminho da imagem para McDonald's
-                  style={styles.categoryImage}
-                />
-              ) : (
-                <View style={styles.categoryImagePlaceholder}></View>
-              )}
-              <Text style={styles.categoryText}>{restaurant}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-
-      {/* Famosos no BigFood (Circulos Verticais) */}
-      <View style={styles.famousRestaurantsVerticalContainer}>
-        <Text style={styles.sectionTitle}>Lojas </Text>
-        <View style={styles.verticalCategory}>
-          <View style={styles.categoryImagePlaceholder}></View>
-          <View style={styles.storeDetails}>
-            <Text style={styles.categoryText}>Japamar</Text>
-            <Text style={styles.storeRating}>⭐ 4.8 <Text style={styles.storeType}>Japonesa 2,6 km</Text></Text>
-            <Text style={styles.storeDelivery}>24-34 min Grátis</Text>
-          </View>
-        </View>
-        {['Restaurante 2', 'Restaurante 3', 'Restaurante 4', 'Restaurante 5'].map((restaurant, index) => (
-          <View style={styles.verticalCategory} key={index}>
-            <View style={styles.categoryImagePlaceholder}></View>
-            <Text style={styles.categoryText}>{restaurant}</Text>
-          </View>
-        ))}
-      </View>
-
-      {/* Rodapé ou Navegação */}
+      {/* Rodapé / Navegação */}
       <View style={styles.navigationContainer}>
         <TouchableOpacity style={styles.navButton}>
+          <Ionicons name="home" size={24} color="#fff" />
           <Text style={styles.navButtonText}>Início</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navButton}>
+          <Ionicons name="search" size={24} color="#fff" />
           <Text style={styles.navButtonText}>Busca</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navButton}>
+          <Ionicons name="restaurant" size={24} color="#fff" />
           <Text style={styles.navButtonText}>Restaurantes</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navButton}>
+          <Ionicons name="person" size={24} color="#fff" />
           <Text style={styles.navButtonText}>Perfil</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -173,16 +257,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  scrollContainer: {
+    paddingBottom: 70,
+  },
   banner: {
-    backgroundColor: '#1E2A47',
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
   },
-  bannerText: {
-    fontSize: 32,
-    color: '#fff',
-    fontWeight: 'bold',
+  bannerImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   categoriesContainer: {
     paddingVertical: 20,
@@ -233,43 +320,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#B0B0B0',
     borderRadius: 10,
   },
-  promotionsContainer: {
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-  },
-  promotionItem: {
-    width: 170,
-    height: 100,
-    backgroundColor: '#D9D9D9',
-    borderRadius: 10,
-    marginRight: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  promotionImagePlaceholder: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#B0B0B0',
-    borderRadius: 10,
-  },
-  promotionText: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginTop: 10,
-  },
-  priceText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#2ECC71',
-    marginTop: 5,
-  },
   lastStoresContainer: {
     paddingVertical: 20,
     paddingHorizontal: 15,
   },
   storeItem: {
-    width: 170,
-    height: 100,
+    width: 135,
+    height: 120,
     backgroundColor: '#D9D9D9',
     borderRadius: 10,
     marginRight: 15,
@@ -287,56 +344,50 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   chefImageContainer: {
-    position: 'relative',
-    marginBottom: 20,
+    width: 180,
+    height: 150,
+    backgroundColor: '#D9D9D9',
+    borderRadius: 10,
+    marginRight: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imagePlaceholder: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#D9D9D9',
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#B0B0B0',
     borderRadius: 10,
   },
   restaurantInfo: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 10,
   },
   restaurantImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    overflow: 'hidden',
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#D9D9D9',
     marginRight: 10,
   },
-  restaurantImagePlaceholder: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#B0B0B0',
-    borderRadius: 25,
-  },
   restaurantTextContainer: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    width: '70%',
+    flex: 1,
   },
   restaurantName: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
   deliveryInfo: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginTop: 5,
+    alignItems: 'center',
   },
   deliveryTime: {
     fontSize: 14,
-    color: '#888',
-    marginRight: 10,
+    color: '#B0B0B0',
   },
   deliveryFree: {
     fontSize: 14,
     color: '#2ECC71',
-    fontWeight: 'bold',
+    marginLeft: 10,
   },
   famousRestaurantsContainer: {
     paddingVertical: 20,
@@ -345,41 +396,42 @@ const styles = StyleSheet.create({
   famousRestaurantsVerticalContainer: {
     paddingVertical: 20,
     paddingHorizontal: 15,
-    alignItems: 'flex-start',
   },
   verticalCategory: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginRight: 20,
   },
   storeDetails: {
-    marginLeft: 10,
+    flex: 1,
+    justifyContent: 'center',
   },
   storeRating: {
-    fontSize: 12,
-    color: '#FFD700',
+    fontSize: 14,
+    fontWeight: '600',
   },
   storeType: {
     fontSize: 12,
-    color: '#888',
+    color: '#B0B0B0',
   },
   storeDelivery: {
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: '#2ECC71',
   },
   navigationContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 15,
-    backgroundColor: '#1E2A47',
+    alignItems: 'center',
+    backgroundColor: '#E65100',
+    paddingVertical: 10,
   },
   navButton: {
     alignItems: 'center',
   },
   navButtonText: {
-    fontSize: 16,
     color: '#fff',
+    fontSize: 12,
   },
 });
 
