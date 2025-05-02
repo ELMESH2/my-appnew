@@ -1,17 +1,34 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import ProfileScreen from './perfil';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const HomeScreen = () => {
+
+
+const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  Perfil: undefined;
+};
+
+type HomeScreenProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>;
+};
+
+const Tab = createBottomTabNavigator();
+
+// Tela principal
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollContainer}>
         {/* Banner principal com imagem */}
         <View style={styles.banner}>
-          <Image
-            source={require('./assets/fotos/bigfood.jpg')}
-            style={styles.bannerImage}
-          />
+          <Image source={require('./assets/fotos/bigfood.jpg')} style={styles.bannerImage} />
         </View>
 
         {/* Categorias */}
@@ -229,28 +246,49 @@ const HomeScreen = () => {
         </View>
       </ScrollView>
 
-      {/* Rodapé / Navegação */}
-      <View style={styles.navigationContainer}>
-        <TouchableOpacity style={styles.navButton}>
-          <Ionicons name="home" size={24} color="#fff" />
-          <Text style={styles.navButtonText}>Início</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton}>
-          <Ionicons name="search" size={24} color="#fff" />
-          <Text style={styles.navButtonText}>Busca</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton}>
-          <Ionicons name="restaurant" size={24} color="#fff" />
-          <Text style={styles.navButtonText}>Restaurantes</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton}>
-          <Ionicons name="person" size={24} color="#fff" />
-          <Text style={styles.navButtonText}>Perfil</Text>
-        </TouchableOpacity>
-      </View>
+      
     </View>
   );
 };
+
+
+// Componente principal com navegação
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName: keyof typeof Ionicons.glyphMap;
+
+            if (route.name === 'Home') {
+              iconName = 'home';
+            } else if (route.name === 'Perfil') {
+              iconName = 'person';
+            } else {
+              iconName = 'ellipse';
+            }
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#fff',
+          tabBarInactiveTintColor: '#ddd',
+          tabBarStyle: {
+            backgroundColor: '#E65100',
+            borderTopWidth: 0,
+          },
+          headerShown: false,
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Perfil" component={ProfileScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -435,4 +473,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+
