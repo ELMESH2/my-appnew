@@ -99,7 +99,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
         {/* Promoções (com imagens) */}
         <View style={styles.lastStoresContainer}>
-          <Text style={styles.sectionTitle}>Promoções</Text>
+          <Text style={styles.sectionTitle}>Categorias</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {['Promoção 1', 'Promoção 2'].map((promotion, index) => (
               <View style={styles.storeItem} key={index}>
@@ -148,18 +148,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                 source={require('./assets/fotos/culinaria br/comidabr.jpg')}
                 style={styles.imagePlaceholder}
               />
-              <View style={styles.restaurantInfo}>
-                <View style={styles.restaurantImage}>
-                  <View style={styles.storeImagePlaceholder}></View>
-                </View>
-                <View style={styles.restaurantTextContainer}>
-                  <Text style={styles.restaurantName}>Restaurante 1</Text>
-                  <View style={styles.deliveryInfo}>
-                    <Text style={styles.deliveryTime}>50 min</Text>
-                    <Text style={styles.deliveryFree}>Grátis</Text>
-                  </View>
-                </View>
-              </View>
+              
             </View>
 
             <View style={styles.chefImageContainer}>
@@ -167,18 +156,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                 source={require('./assets/fotos/culinaria br/comidabr2.jpg')}
                 style={styles.imagePlaceholder}
               />
-              <View style={styles.restaurantInfo}>
-                <View style={styles.restaurantImage}>
-                  <View style={styles.storeImagePlaceholder}></View>
-                </View>
-                <View style={styles.restaurantTextContainer}>
-                  <Text style={styles.restaurantName}>Restaurante 2</Text>
-                  <View style={styles.deliveryInfo}>
-                    <Text style={styles.deliveryTime}>50 min</Text>
-                    <Text style={styles.deliveryFree}>Grátis</Text>
-                  </View>
-                </View>
-              </View>
+              
             </View>
           </ScrollView>
         </View>
